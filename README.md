@@ -1,8 +1,8 @@
 # A worker to keep track of your days since something
 
 Programmers often find themselves in a situation where they repeat certain tasks, 
-sometimes its to brag about how frequently they do something, sometimes its to show frustration on things that break often, 
-for example `Its been 0 days since I had to do a windows update` or `Its been 0 days since it was the DNS` or `Its been 0 days since I pushed to github`.
+sometimes it's to brag about how frequently they do something, sometimes it's to show frustration on things that break often, 
+for example `it has been 0 days since I had to do a windows update` or `it has been 0 days since it was the DNS` or `it hasIts been 0 days since I pushed to github`.
 So I made this worker to keep track of how many days since something happened and respond with a [shields badge](https://shields.io/).
 
 <p align="center">

@@ -116,13 +116,13 @@ async function handleGetRequest(request: Request, env: Env) {
 
   let value = await env.COUNTER_STORAGE.get(task)
   let date = value ? new Date(value) : null
-  let message = "its been ages since"
+  let message = "it has been ages since"
   if (date) {
     let days =
       ((new Date().getTime() - date.getTime()) / (24 * 60 * 60 * 1000)) | 0
-    message = `its been ${days} days since`
+    message = `it has been ${days} days since`
     if (days === 1) {
-      message = "its been 1 day since"
+      message = "it has been 1 day since"
     }
   }
 
