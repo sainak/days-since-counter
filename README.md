@@ -2,7 +2,8 @@
 
 Programmers often find themselves in a situation where they repeat certain tasks, 
 sometimes it's to brag about how frequently they do something, sometimes it's to show frustration on things that break often, 
-for example `it has been 0 days since I had to do a windows update` or `it has been 0 days since it was the DNS` or `it hasIts been 0 days since I pushed to github`.
+for example `it has been 0 days since the last new javascript framework` or `it has been 0 days since it was the DNS` 
+or `it has been 0 days since I pushed to github` or `it has been 0 days since I had to do a windows update`.
 So I made this worker to keep track of how many days since something happened and respond with a [shields badge](https://shields.io/).
 
 <p align="center">
@@ -35,7 +36,7 @@ cp example.wrangler.toml wrangler.toml
 
 Set counter for something.
 ```sh
-curl -X PUT -u user:secure password http://localhost:8787/I-recompiled-linux-kernel
+curl -X PUT -u "user:secure password" http://localhost:8787/I-recompiled-linux-kernel
 ```
 
 Get the badge for something.
@@ -50,7 +51,7 @@ curl http://localhost:8787/
 
 Delete a counter.
 ```sh
-curl -X DELETE -u user:secure password http://localhost:8787/I-recompiled-linux-kernel
+curl -X DELETE -u "user:secure password" http://localhost:8787/I-recompiled-linux-kernel
 ```
 
 
