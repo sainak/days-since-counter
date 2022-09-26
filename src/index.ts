@@ -51,7 +51,7 @@ const parseTask = (url: string) =>
 async function authenticate(
   request: Request,
   env: Env,
-  handler: (request: Request, env:Env) => Promise<Response>
+  handler: (request: Request, env: Env) => Promise<Response>
 ) {
   const { protocol, hostname } = new URL(request.url)
   // In the case of a Basic authentication, the exchange
@@ -97,7 +97,7 @@ async function authenticate(
   return handler(request, env)
 }
 
-async function handleGetRequest(request: Request, env:Env) {
+async function handleGetRequest(request: Request, env: Env) {
   if (new URL(request.url).pathname === "/favicon.ico")
     return new Response("Not Found", { status: 404 })
 
@@ -105,14 +105,16 @@ async function handleGetRequest(request: Request, env:Env) {
 
   if (task === "") {
     // List all tasks
-    let _tasks = await env.TASK_STORAGE.list()
+    let _tasks = await env.COUNTER_STORAGE.list()
     const tasks = _tasks.keys.map((key) => {
       return key.name
     })
-    return new Response(JSON.stringify({ tasks }), {headers: {"Content-Type": "application/json"}})
+    return new Response(JSON.stringify({ tasks }), {
+      headers: { "Content-Type": "application/json" },
+    })
   }
 
-  let value = await env.TASK_STORAGE.get(task)
+  let value = await env.COUNTER_STORAGE.get(task)
   let date = value ? new Date(value) : null
   let message = "its been ages since"
   if (date) {
@@ -123,7 +125,6 @@ async function handleGetRequest(request: Request, env:Env) {
       message = "its been 1 day since"
     }
   }
-  task = "I " + task
 
   return fetch(`https://img.shields.io/badge/${message}-${task}-green`)
 }
@@ -133,7 +134,7 @@ async function handlePutRequest(request: Request, env: Env) {
 
   if (task === "") return new Response("Bad Request", { status: 400 })
 
-  return env.TASK_STORAGE.put(task, new Date().toISOString())
+  return env.COUNTER_STORAGE.put(task, new Date().toISOString())
     .then(() => new Response("Great work!"))
     .catch((e) => {
       console.log(e)
@@ -143,8 +144,10 @@ async function handlePutRequest(request: Request, env: Env) {
 
 async function handleDeleteRequest(request: Request, env: Env) {
   let task = parseTask(request.url)
+
   if (task === "") return new Response("Bad Request", { status: 400 })
-  return env.TASK_STORAGE.delete(task)
+
+  return env.COUNTER_STORAGE.delete(task)
     .then(() => new Response("Task deleted"))
     .catch((e) => {
       console.log(e)
@@ -153,7 +156,7 @@ async function handleDeleteRequest(request: Request, env: Env) {
 }
 
 export interface Env {
-  TASK_STORAGE: KVNamespace
+  COUNTER_STORAGE: KVNamespace
   USERNAME: string
   PASSWORD: string
 }

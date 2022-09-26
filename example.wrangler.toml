@@ -1,9 +1,9 @@
-name = "0-day-counter"
+name = "days-since-counter"
 workers_dev = true
 compatibility_date = "2022-05-03"
 
 [[kv_namespaces]]
-  binding = "TASK_STORAGE"
+  binding = "COUNTER_STORAGE"
   id = "<YOUR_ID>"
   preview_id = "<YOUR_PREVIEW_ID>"
 
